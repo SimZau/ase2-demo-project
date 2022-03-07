@@ -27,6 +27,8 @@ public class DevConfiguration implements MyLogger {
     AddressRepository addressRepository;
     @Autowired
     ProjectRepository projectRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     @Qualifier("felixMuster")
@@ -52,6 +54,7 @@ public class DevConfiguration implements MyLogger {
         createEmployeeMaxMustermann();
         assignMaxMustermannToDesignProject();
         assignMaxMustermannAsChef();
+        createUserData();
     }
 
     public void createPersonData() {
@@ -189,5 +192,10 @@ public class DevConfiguration implements MyLogger {
                 employeeRepository.save(chef);
             });
         });
+    }
+
+    private void createUserData() {
+        User user = new User("Felix Muster", "felix.muster@example.com");
+        userRepository.save(user);
     }
 }
